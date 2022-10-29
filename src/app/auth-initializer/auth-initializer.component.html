@@ -3,78 +3,117 @@
         <h1 style="font-size:30px; margin-bottom:20px; margin-top:20px; margin-left:80px; font-weight:bold;">SUPERSPORT - HRVATSKA NOGOMETNA LIGA 2022 / 2023</h1>
         <div style="display:flex; flex-direction:row; align-items:center;"> 
             <div *ngIf="auth.user$ | async as user">
-                <p style="margin:0; margin-right:50px; font-size:20px;">Dobrodošao natrag <span style="margin:0; margin-left:10px; font-size:20px; font-weight:bold;">{{user.name}} ! </span></p>
+                <p style="margin:0; margin-right:50px; font-size:20px;">Dobrodošao natrag <span style="margin:0; margin-left:10px; font-size:20px; font-weight:bold;">{{username}} ! </span></p>
             </div>
             <button mat-button (click)="auth.logout({ returnTo: document.location.origin })" style="background-color:white; color:black; font-weight:bold; width:120px; height:40px; border-radius:10px; margin-right:20px;">ODJAVA</button>
         </div>
     </div>
 </div>
-<div style="width:100%; display:flex; flex-direction:column; align-items:center;" *ngFor="let kolo of kola">
+<div style="width:100%; display:flex; flex-direction:row;">
+    <div style="width:40%; height:100%; margin:auto; margin-top:20px;">
+        <div style="padding: 20px 25px 20px 25px; background-color:#F1F1F1; border-radius:10px;">
+            <h1 style="margin-bottom:10px; float:left; ">Ljestvica</h1>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="no">
+                    <th mat-header-cell *matHeaderCellDef style="padding-left:0px;"></th>
+                    <td mat-cell *matCellDef="let element" style="padding-left:10px;">{{element.poredak}}.</td>
+                </ng-container>
+                <ng-container matColumnDef="klub">
+                    <th mat-header-cell *matHeaderCellDef>KLUB</th>
+                    <td mat-cell *matCellDef="let element"> {{element.klub}} </td>
+                </ng-container>
+                <ng-container matColumnDef="ukupno">
+                    <th mat-header-cell *matHeaderCellDef>UKUPNO</th>
+                    <td mat-cell *matCellDef="let element"> {{element.ukupno_odigranih_utakmica}} </td>
+                </ng-container>
+                <ng-container matColumnDef="pobjede">
+                    <th mat-header-cell *matHeaderCellDef>POBJEDE</th>
+                    <td mat-cell *matCellDef="let element"> {{element.broj_pobjeda}} </td>
+                </ng-container>
+                <ng-container matColumnDef="nerjeseno">
+                    <th mat-header-cell *matHeaderCellDef>NERJESENO</th>
+                    <td mat-cell *matCellDef="let element"> {{element.broj_nerjesenih}} </td>
+                </ng-container>
+                <ng-container matColumnDef="porazi">
+                    <th mat-header-cell *matHeaderCellDef>PORAZI</th>
+                    <td mat-cell *matCellDef="let element"> {{element.broj_poraza}} </td>
+                </ng-container>
+                <ng-container matColumnDef="bodovi">
+                    <th mat-header-cell *matHeaderCellDef>BODOVI</th>
+                    <td mat-cell *matCellDef="let element"> {{element.bodovi}} </td>
+                </ng-container>
 
-    <div  class="kolo-table-wrapper">
-        <h1 style="margin-bottom:10px; float:left; ">{{kolo.naziv}}</h1>
-        <table mat-table [dataSource]="kolo.utakmice_kola" class="mat-elevation-z8" style="margin-top:40px;">
-            <ng-container matColumnDef="datum">
-                <th mat-header-cell *matHeaderCellDef>DATUM</th>
-                <td mat-cell *matCellDef="let element"> {{element.datum}} </td>
-            </ng-container>
-            <ng-container matColumnDef="lokacija">
-                <th mat-header-cell *matHeaderCellDef>STADION</th>
-                <td mat-cell *matCellDef="let element"> {{element.lokacija}} </td>
-            </ng-container>
-            <ng-container matColumnDef="protivnik1">
-                <th mat-header-cell *matHeaderCellDef style="text-align:center;">DOMAĆINI</th>
-                <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.protivnik1}} </td>
-            </ng-container>
-            <ng-container matColumnDef="rezultat">
-                <th mat-header-cell *matHeaderCellDef style="text-align:center;">REZULTAT</th>
-                <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.rezultat}} </td>
-            </ng-container>
-            <ng-container matColumnDef="protivnik2">
-                <th mat-header-cell *matHeaderCellDef style="text-align:center;">GOSTI</th>
-                <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.protivnik2}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <div style="margin-top:25px; display:flex; flex-direction:column; justify-content:flex-start;">
-            <div style="display:flex; flex-direction:row; width: 30%; justify-content:space-between; align-items:center;">
-                <h2 style="font-weight:normal; margin-bottom:0;">KOMENTARI</h2>
-                <mat-icon  class="gumb" matTooltip="Komentiraj Kolo!" (click)="addComment(kolo.id)" matRipple *ngIf="username">rate_review</mat-icon>
-            </div>
-            <mat-divider style="width:30%; margin-bottom:20px;"></mat-divider>
-            <div *ngIf="(newComment || editingComment) && currentId==kolo.id">
-                <form #f="ngForm" (ngSubmit)="onCommentSubmit()">
-                    <div style="display:flex; flex-direction:row; align-items:flex-start;">
-                    <mat-form-field style="width:30%;" appearance="outline">
-                        <mat-label>{{ editingComment ? 'Uredi komentar' : 'Dodaj komentar'}}</mat-label>
-                        <textarea matInput name="comment" type="text" class="form-control" required [(ngModel)]="commentValue"></textarea>
-                    </mat-form-field>
-                    <div style="display:flex; flex-direction:column;">
-                    <button mat-button type="submit" [disabled]="!f.valid" style="border:none; outline:none; margin-left:5px;" matTooltip="Dodaj" (click)="passInfo(kolo.id)"><mat-icon>add_to_photos</mat-icon></button>
-                    <button mat-button style="border:none; outline:none; margin-left:5px;" matTooltip="Odustani" (click)="cancelComment()"><mat-icon>highlight_off</mat-icon></button>
-                    </div>
-                </div>
-                </form>
-            </div>
-            <table class="comment-table">
-                <tr class="comment-table-tr">
-                    <th style="width:170px;" class="comment-table-th">Datum</th>
-                    <th style="width:160px;" class="comment-table-th">Korisnik</th>
-                    <th class="comment-table-th" style="text-align:left; padding-left:15px;">Komentar</th>
-                    <th class="comment-table-th" style="width:50px;"></th>
-                </tr>
-                <tr *ngFor="let comment of kolo.komentari" class="comment-table-tr">
-                    <td style="text-align:center;" class="comment-table-td">{{comment.datum}}</td>
-                    <td style="text-align:center;" class="comment-table-td">{{comment.user}}</td>
-                    <td class="comment-table-td" style="padding-left:15px; max-width:450px;">{{comment.comment}}</td>
-                    <td class="comment-table-td">
-                        <mat-icon class="gumb" matTooltip="Uredi" *ngIf="comment.email == email" (click)="editComment(comment.id, comment.comment)">edit_note</mat-icon>
-                        <mat-icon class="gumb" matTooltip="Obriši" *ngIf="comment.email == email" (click)="deleteComment(comment.id, kolo.id)">delete_forever</mat-icon>
-                    </td>
-                  </tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsPoredak"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsPoredak;"></tr>
             </table>
+        </div>
+    </div>
+    <div style=" width:50%; height:100%; display:flex; flex-direction:column; align-items:center;">
+        <div  class="kolo-table-wrapper" *ngFor="let kolo of kola">
+            <h1 style="margin-bottom:10px; float:left; ">{{kolo.naziv}}</h1>
+            <table mat-table [dataSource]="kolo.utakmice_kola" class="mat-elevation-z8" style="margin-top:40px;">
+                <ng-container matColumnDef="datum">
+                    <th mat-header-cell *matHeaderCellDef>DATUM</th>
+                    <td mat-cell *matCellDef="let element"> {{element.datum}} </td>
+                </ng-container>
+                <ng-container matColumnDef="lokacija">
+                    <th mat-header-cell *matHeaderCellDef>STADION</th>
+                    <td mat-cell *matCellDef="let element"> {{element.lokacija}} </td>
+                </ng-container>
+                <ng-container matColumnDef="protivnik1">
+                    <th mat-header-cell *matHeaderCellDef style="text-align:center;">DOMAĆINI</th>
+                    <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.protivnik1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="rezultat">
+                    <th mat-header-cell *matHeaderCellDef style="text-align:center;">REZULTAT</th>
+                    <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.rezultat}} <mat-icon class="admin-edit-icon" *ngIf="userRoles[0] == 'administrator'" [matTooltip]="element.rezultat[0]=='-' ? 'Dodaj rezultat' : 'Izmjeni rezultat'">{{element.rezultat[0]=='-' ? 'add_box' : 'edit_calendar'}}</mat-icon></td>
+                </ng-container>
+                <ng-container matColumnDef="protivnik2">
+                    <th mat-header-cell *matHeaderCellDef style="text-align:center;">GOSTI</th>
+                    <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.protivnik2}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsKolo"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsKolo;"></tr>
+            </table>
+            <div style="margin-top:25px; display:flex; flex-direction:column; justify-content:flex-start;">
+                <div style="display:flex; flex-direction:row; width: 30%; justify-content:space-between; align-items:center;">
+                    <h2 style="font-weight:normal; margin-bottom:0;">KOMENTARI</h2>
+                    <mat-icon  class="gumb" matTooltip="Komentiraj Kolo!" (click)="addComment(kolo.id)" matRipple *ngIf="username">rate_review</mat-icon>
+                </div>
+                <mat-divider style="width:30%; margin-bottom:20px;"></mat-divider>
+                <div *ngIf="(newComment || editingComment) && currentId==kolo.id">
+                    <form #f="ngForm" (ngSubmit)="onCommentSubmit()">
+                        <div style="display:flex; flex-direction:row; align-items:flex-start;">
+                        <mat-form-field style="width:30%;" appearance="outline">
+                            <mat-label>{{ editingComment ? 'Uredi komentar' : 'Dodaj komentar'}}</mat-label>
+                            <textarea matInput name="comment" type="text" class="form-control" required [(ngModel)]="commentValue"></textarea>
+                        </mat-form-field>
+                        <div style="display:flex; flex-direction:column;">
+                        <button mat-button type="submit" [disabled]="!f.valid" style="border:none; outline:none; margin-left:5px;" matTooltip="Dodaj" (click)="passInfo(kolo.id)"><mat-icon>add_to_photos</mat-icon></button>
+                        <button mat-button style="border:none; outline:none; margin-left:5px;" matTooltip="Odustani" (click)="cancelComment()"><mat-icon>highlight_off</mat-icon></button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <table class="comment-table">
+                    <tr class="comment-table-tr">
+                        <th style="width:170px;" class="comment-table-th">Datum</th>
+                        <th style="width:160px;" class="comment-table-th">Korisnik</th>
+                        <th class="comment-table-th" style="text-align:left; padding-left:15px;">Komentar</th>
+                        <th class="comment-table-th" style="width:50px;"></th>
+                    </tr>
+                    <tr *ngFor="let comment of kolo.komentari" class="comment-table-tr">
+                        <td style="text-align:center;" class="comment-table-td">{{comment.datum}}</td>
+                        <td style="text-align:center;" class="comment-table-td">{{comment.user}}</td>
+                        <td class="comment-table-td" style="padding-left:15px; max-width:450px; text-align:left;">{{comment.comment}}</td>
+                        <td class="comment-table-td">
+                            <mat-icon class="gumb" matTooltip="Uredi" *ngIf="comment.email == email" (click)="editComment(comment.id, comment.comment)">edit_note</mat-icon>
+                            <mat-icon class="gumb" matTooltip="Obriši" *ngIf="comment.email == email || userRoles[0] == 'administrator'" (click)="deleteComment(comment.id, kolo.id)">delete_forever</mat-icon>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>
