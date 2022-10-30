@@ -1,4 +1,5 @@
 # Lab1Auth
+Projekt je napravljen kroz Angular Typescript framework
 Za projekt je korišten auth0 Angular SDK
 Za autorizaciju je u auth0 dodano pravilo koje za uspješan login šalje User Role kroz JWT token:
 
