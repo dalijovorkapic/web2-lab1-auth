@@ -79,7 +79,7 @@
             <div style="margin-top:25px; display:flex; flex-direction:column; justify-content:flex-start;">
                 <div style="display:flex; flex-direction:row; width: 30%; justify-content:space-between; align-items:center;">
                     <h2 style="font-weight:normal; margin-bottom:0;">KOMENTARI</h2>
-                    <mat-icon  class="gumb" matTooltip="Komentiraj Kolo!" (click)="addComment(kolo.id)" matRipple *ngIf="username">rate_review</mat-icon>
+                    <mat-icon  class="gumb" matTooltip="Komentiraj Kolo!" (click)="addComment(kolo.id)" matRipple *ngIf="username != ''">rate_review</mat-icon>
                 </div>
                 <mat-divider style="width:30%; margin-bottom:20px;"></mat-divider>
                 <div *ngIf="(newComment || editingComment) && currentId==kolo.id">

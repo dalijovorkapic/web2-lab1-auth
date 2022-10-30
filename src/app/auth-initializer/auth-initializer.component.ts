@@ -94,9 +94,11 @@ export class AuthInitializerComponent implements OnInit {
   ngOnInit(): void {
     this.auth.isAuthenticated$.subscribe(authenticated => {
       this.auth.user$.subscribe(user => {
-        if(user) {
-          this.username = user!.nickname!
-          this.email = user!.name!
+        if(user){
+          if(user!.nickname)
+            this.username = user!.nickname!
+          if(user!.email)
+            this.email = user!.name!
         }
       })
 
