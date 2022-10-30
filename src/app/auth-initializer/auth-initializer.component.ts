@@ -160,6 +160,7 @@ export class AuthInitializerComponent implements OnInit {
       klub.bodovi = (klub.broj_pobjeda*3)+(klub.broj_nerjesenih);
     })
     this.tablica_poretka.sort((a,b) => b.bodovi - a.bodovi)
+    console.log(this.tablica_poretka)
     for (let i=0; i<this.tablica_poretka.length; i++) {
       this.tablica_poretka[i].poredak = i+1;
     }
