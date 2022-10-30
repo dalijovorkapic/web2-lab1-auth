@@ -2,17 +2,14 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Auth0ClientService, AuthService } from '@auth0/auth0-angular';
-import { environment } from 'src/environments/environment';
-//import { koloModel } from 'src/models/koloModel';
-import { utakmicaModel } from 'src/models/utakmicaModel';
+//biblioteka za spajanje i komuniciranje sa auth0
+import { AuthService } from '@auth0/auth0-angular';
 
+
+import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { koloModel } from 'src/models/koloModel';
-import { komentarModel } from 'src/models/komentarModel';
 import { ljetstvicaModel } from 'src/models/ljestvicaModel';
-import { MatSort } from '@angular/material/sort';
-import { MatTab } from '@angular/material/tabs';
 import { delay, of } from 'rxjs';
 
 
@@ -46,6 +43,7 @@ export class AuthInitializerComponent implements OnInit {
   score2: number;
   koloId: number = 0;
 
+  //tablica za bodovanje klubova
   tablica_poretka: ljetstvicaModel[] = [
     {id:1, poredak: 1, klub: 'Hajduk', ukupno_odigranih_utakmica: 0, broj_pobjeda:0, broj_nerjesenih:0, broj_poraza:0, bodovi: 0},
     {id:2, poredak: 1, klub: 'Dinamo', ukupno_odigranih_utakmica: 0, broj_pobjeda:0, broj_nerjesenih:0, broj_poraza:0, bodovi: 0},
@@ -59,6 +57,8 @@ export class AuthInitializerComponent implements OnInit {
     {id:10, poredak: 1, klub: 'Velika Gorica', ukupno_odigranih_utakmica: 0, broj_pobjeda:0, broj_nerjesenih:0, broj_poraza:0, bodovi: 0}
   ]
 
+
+  //tablica kola i pripadajućih utakmica i komentara
   kola: koloModel[] = [
     {
       id:1, naziv:'11. Kolo', odigrano:true, 
@@ -114,6 +114,8 @@ export class AuthInitializerComponent implements OnInit {
               public auth: AuthService) { }
 
   ngOnInit(): void {
+
+    //provjera dali je korisnik autentificiran i dohvaćanje njegovih informacija
     this.auth.isAuthenticated$.subscribe(authenticated => {
       if(authenticated) {
         this.auth.user$.subscribe(user => {
@@ -130,8 +132,10 @@ export class AuthInitializerComponent implements OnInit {
       
         let helper = new JwtHelperService()
 
+        //dekodiranje jwt tokena
         let decoded_id_token = helper.decodeToken(id_token)
 
+        //dohvat poslanih autorizacijskih uloga kroz jwt token
         this.userRoles = decoded_id_token[`${environment.baseUrl}/roles`];
 
         this.token_expiration = user.body.expires_in
@@ -251,7 +255,6 @@ export class AuthInitializerComponent implements OnInit {
   }
 
   passInfo(id: number) {
-    //this.commentValue = "";
     this.koloId = id;
   }
 

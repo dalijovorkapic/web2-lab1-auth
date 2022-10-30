@@ -1,3 +1,4 @@
+<!-- provjera dali je korisnik autentificiran, poseban view samo za autentificiranog korisnika -->
 <div *ngIf="auth.isAuthenticated$ | async; else loggedOut">
     <div style="width:100%; display:flex; flex-direction:row; justify-content: space-between; align-items:center; background-color:#e6e6e6"> 
         <h1 style="font-size:30px; margin-bottom:20px; margin-top:20px; margin-left:80px; font-weight:bold;">SUPERSPORT - HRVATSKA NOGOMETNA LIGA 2022 / 2023</h1>
@@ -135,7 +136,7 @@
     </div>
 </div>
 
-
+<!-- poseban view samo za anonimnog korisnika -->
 <ng-template #loggedOut>
     <div style="width:100%; display:flex; flex-direction:row; justify-content: space-between; align-items:center; background-color:#e6e6e6"> 
         <h1 style="font-size:30px; margin-bottom:20px; margin-top:20px; margin-left:80px; font-weight:bold;">SUPERSPORT - HRVATSKA NOGOMETNA LIGA</h1>

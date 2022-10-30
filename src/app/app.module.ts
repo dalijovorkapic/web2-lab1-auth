@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
 
+    //postavljanje auth0 informacija
     AuthModule.forRoot({
       domain: environment.domain,
       clientId: environment.clientId,
