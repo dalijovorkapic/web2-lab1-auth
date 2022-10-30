@@ -65,8 +65,25 @@
                     <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.protivnik1}} </td>
                 </ng-container>
                 <ng-container matColumnDef="rezultat">
-                    <th mat-header-cell *matHeaderCellDef style="text-align:center;">REZULTAT</th>
-                    <td mat-cell *matCellDef="let element" style="text-align:center;"> {{element.rezultat}} <mat-icon class="admin-edit-icon" *ngIf="userRoles[0] == 'administrator'" [matTooltip]="element.rezultat[0]=='-' ? 'Dodaj rezultat' : 'Izmjeni rezultat'">{{element.rezultat[0]=='-' ? 'add_box' : 'edit_calendar'}}</mat-icon></td>
+                    <th mat-header-cell *matHeaderCellDef style="text-align:center; margin-left:10px;">REZULTAT</th>
+                    <td mat-cell *matCellDef="let element" style="text-align:center;">
+                        <span [hidden]="showEditScoreInput && (element.id ==currentMatchId && kolo.id == currentKoloId)">{{element.rezultat}}</span>
+                        <div [hidden]="!showEditScoreInput || element.id != currentMatchId || kolo.id != currentKoloId">
+                            <form #ff="ngForm" style="display:flex; flex-direction:row; align-items:center; margin-left:10px; margin-right:10px;" (ngSubmit)="onScoreSubmit(kolo.id, element.id)">
+                                <mat-form-field style="width:60px;" appearance="outline">
+                                    <input matInput name="score1" type="number" min="0" class="form-control" required [(ngModel)]="score1">
+                                </mat-form-field>
+                                :
+                                <mat-form-field style="width:60px;" appearance="outline">
+                                    <input matInput name="score2" type="number" min="0" class="form-control" required [(ngModel)]="score2">
+                                </mat-form-field>
+                                <div style="display:flex; flex-direction:column;">
+                                    <button mat-button type="submit" [disabled]="!ff.valid" style="border:none; outline:none; width:5px; max-width:5px;"><mat-icon style="transform:scale(0.75);">add_to_photos</mat-icon></button>
+                                    <button mat-button style="border:none; outline:none; width:5px; max-width:5px;" (click)="cancelScoreEdit(kolo.id, element.id)"><mat-icon style="transform:scale(0.75);">highlight_off</mat-icon></button>
+                                </div>
+                            </form>
+                        </div> 
+                        <mat-icon class="admin-edit-icon" *ngIf="userRoles[0] == 'administrator' && ( !showEditScoreInput || element.id !=currentMatchId || kolo.id !=currentKoloId)" [matTooltip]="element.rezultat[0]=='-' ? 'Dodaj rezultat' : 'Izmjeni rezultat'" (click)="editScore(element.id, kolo.id)">{{element.rezultat[0]=='-' ? 'add_box' : 'edit_calendar'}}</mat-icon></td>
                 </ng-container>
                 <ng-container matColumnDef="protivnik2">
                     <th mat-header-cell *matHeaderCellDef style="text-align:center;">GOSTI</th>
@@ -85,15 +102,15 @@
                 <div *ngIf="(newComment || editingComment) && currentId==kolo.id">
                     <form #f="ngForm" (ngSubmit)="onCommentSubmit()">
                         <div style="display:flex; flex-direction:row; align-items:flex-start;">
-                        <mat-form-field style="width:30%;" appearance="outline">
-                            <mat-label>{{ editingComment ? 'Uredi komentar' : 'Dodaj komentar'}}</mat-label>
-                            <textarea matInput name="comment" type="text" class="form-control" required [(ngModel)]="commentValue"></textarea>
-                        </mat-form-field>
-                        <div style="display:flex; flex-direction:column;">
-                        <button mat-button type="submit" [disabled]="!f.valid" style="border:none; outline:none; margin-left:5px;" matTooltip="Dodaj" (click)="passInfo(kolo.id)"><mat-icon>add_to_photos</mat-icon></button>
-                        <button mat-button style="border:none; outline:none; margin-left:5px;" matTooltip="Odustani" (click)="cancelComment()"><mat-icon>highlight_off</mat-icon></button>
+                            <mat-form-field style="width:30%;" appearance="outline">
+                                <mat-label>{{ editingComment ? 'Uredi komentar' : 'Dodaj komentar'}}</mat-label>
+                                <textarea matInput name="comment" type="text" class="form-control" required [(ngModel)]="commentValue"></textarea>
+                            </mat-form-field>
+                            <div style="display:flex; flex-direction:column;">
+                                <button mat-button type="submit" [disabled]="!f.valid" style="border:none; outline:none; margin-left:5px;" matTooltip="Dodaj" (click)="passInfo(kolo.id)"><mat-icon>add_to_photos</mat-icon></button>
+                                <button mat-button style="border:none; outline:none; margin-left:5px;" matTooltip="Odustani" (click)="cancelComment()"><mat-icon>highlight_off</mat-icon></button>
+                            </div>
                         </div>
-                    </div>
                     </form>
                 </div>
                 <table class="comment-table">
@@ -108,7 +125,7 @@
                         <td style="text-align:center;" class="comment-table-td">{{comment.user}}</td>
                         <td class="comment-table-td" style="padding-left:15px; max-width:450px; text-align:left;">{{comment.comment}}</td>
                         <td class="comment-table-td">
-                            <mat-icon class="gumb" matTooltip="Uredi" *ngIf="comment.email == email" (click)="editComment(comment.id, comment.comment)">edit_note</mat-icon>
+                            <mat-icon class="gumb" matTooltip="Uredi" *ngIf="comment.email == email" (click)="editComment(comment.id, comment.comment, kolo.id)">edit_note</mat-icon>
                             <mat-icon class="gumb" matTooltip="Obriši" *ngIf="comment.email == email || userRoles[0] == 'administrator'" (click)="deleteComment(comment.id, kolo.id)">delete_forever</mat-icon>
                         </td>
                     </tr>

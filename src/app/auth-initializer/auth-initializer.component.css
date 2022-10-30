@@ -73,3 +73,7 @@ table td {
   cursor:pointer;
   color:black;
 }
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom:0px !important;
+}
