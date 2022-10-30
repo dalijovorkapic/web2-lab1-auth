@@ -63,46 +63,46 @@ export class AuthInitializerComponent implements OnInit {
     {
       id:1, naziv:'11. Kolo', odigrano:true, 
       utakmice_kola: [
-        {id:1, datum:'02.10.2022. 15:00', lokacija: 'HNK Rijeka', odigrana:true, protivnik1:'Rijeka', protivnik2:'Hajduk', rezultat:'0 : 1'},
-        {id:2, datum:'02.10.2022. 17:30', lokacija: 'Šubićeva, Šibenik', odigrana:true, protivnik1:'Šibenik', protivnik2:'Velika Gorica', rezultat:'1 : 1'},
-        {id:3, datum:'01.10.2022. 16:55', lokacija: 'Stadion gradski vrt, Osijek', odigrana:true, protivnik1:'Osijek', protivnik2:'Lokomotiva', rezultat:'4 : 1'},
-        {id:4, datum:'01.10.2022. 19:30', lokacija: 'Stadion Maksimir, Zagreb', odigrana:true, protivnik1:'Dinamo', protivnik2:'Slaven Belupo', rezultat:'4 : 1'},
-        {id:5, datum:'30.09.2022. 18:00', lokacija: 'Stadion Varteks, Varaždin', odigrana:true, protivnik1:'Varaždin', protivnik2:'Istra 1961', rezultat:'1 : 1'}
+        {id:1, datum:'10/02/2022, 15:00', lokacija: 'HNK Rijeka', odigrana:true, protivnik1:'Rijeka', protivnik2:'Hajduk', rezultat:'0 : 1'},
+        {id:2, datum:'10/02/2022, 17:30', lokacija: 'Šubićeva, Šibenik', odigrana:true, protivnik1:'Šibenik', protivnik2:'Velika Gorica', rezultat:'1 : 1'},
+        {id:3, datum:'10/01/2022, 16:55', lokacija: 'Stadion gradski vrt, Osijek', odigrana:true, protivnik1:'Osijek', protivnik2:'Lokomotiva', rezultat:'4 : 1'},
+        {id:4, datum:'10/01/2022, 19:30', lokacija: 'Stadion Maksimir, Zagreb', odigrana:true, protivnik1:'Dinamo', protivnik2:'Slaven Belupo', rezultat:'4 : 1'},
+        {id:5, datum:'09/30/2022, 18:00', lokacija: 'Stadion Varteks, Varaždin', odigrana:true, protivnik1:'Varaždin', protivnik2:'Istra 1961', rezultat:'1 : 1'}
       ],
-      komentari: [{id: 1, datum:'03.10.2022, 17:52:23', comment:'Kritična igra', user:'marko.markic', email:'marko.markic@gmail.com'},
-                  {id: 2, datum:'03.10.2022, 17:52:23', comment:'Lijepe riječi molim! :)', user:'admin', email:'admin@net.hr'}]
+      komentari: [{id: 1, datum:'10/03/2022, 17:52:23', comment:'Kritična igra', user:'marko.markic', email:'marko.markic@gmail.com'},
+                  {id: 2, datum:'10/032022, 17:52:23', comment:'Lijepe riječi molim! :)', user:'admin', email:'admin@net.hr'}]
     },
     {
       id:2, naziv:'12. Kolo', odigrano:true, 
       utakmice_kola: [
-        {id:1, datum:'08.10.2022. 19:05', lokacija: 'Gradski stadion Poljud, Split', odigrana:true, protivnik1:'Hajduk', protivnik2:'Varaždin', rezultat:'2 : 1'},
-        {id:2, datum:'08.10.2022. 17:10', lokacija: 'Aldo Drosina, Pula', odigrana:false, protivnik1:'Istra 1961', protivnik2:'Dinamo', rezultat:'- : -'},
-        {id:3, datum:'09.10.2022. 15:00', lokacija: 'Gradski stadion Ivan Kušek Apaš, Koprivnica', odigrana:true, protivnik1:'Slaven Belupo', protivnik2:'Osijek', rezultat:'0 : 4'},
-        {id:4, datum:'07.10.2022. 18:00', lokacija: 'Nogometni stadion Zagreb, Zagreb', odigrana:true, protivnik1:'Lokomotiva', protivnik2:'Šibenik', rezultat:'1 : 1'},
-        {id:5, datum:'09.10.2022. 17:10', lokacija: 'Gradski stadion, Velika Gorica', odigrana:true, protivnik1:'Velika Gorica', protivnik2:'Rijeka', rezultat:'0 : 2'}
+        {id:1, datum:'10/08/2022, 19:05', lokacija: 'Gradski stadion Poljud, Split', odigrana:true, protivnik1:'Hajduk', protivnik2:'Varaždin', rezultat:'2 : 1'},
+        {id:2, datum:'10/08/2022, 17:10', lokacija: 'Aldo Drosina, Pula', odigrana:false, protivnik1:'Istra 1961', protivnik2:'Dinamo', rezultat:'- : -'},
+        {id:3, datum:'10/09/.2022, 15:00', lokacija: 'Gradski stadion Ivan Kušek Apaš, Koprivnica', odigrana:true, protivnik1:'Slaven Belupo', protivnik2:'Osijek', rezultat:'0 : 4'},
+        {id:4, datum:'10/07/2022, 18:00', lokacija: 'Nogometni stadion Zagreb, Zagreb', odigrana:true, protivnik1:'Lokomotiva', protivnik2:'Šibenik', rezultat:'1 : 1'},
+        {id:5, datum:'10/09/.2022, 17:10', lokacija: 'Gradski stadion, Velika Gorica', odigrana:true, protivnik1:'Velika Gorica', protivnik2:'Rijeka', rezultat:'0 : 2'}
       ],
-      komentari: [{id: 1, datum:'09.10.2022, 14:12:23', comment:'Trofej ide u Rijeku D:', user:'bruno.brunic', email:'bruno.brunic@gmail.com'},
-                  {id: 2, datum:'10.10.2022, 18:52:23', comment:'@bruno.brunic kako da ne :P', user:'marko.markic', email:'marko.markic@gmail.com'}]
+      komentari: [{id: 1, datum:'10/09/.2022, 14:12:23', comment:'Trofej ide u Rijeku D:', user:'bruno.brunic', email:'bruno.brunic@gmail.com'},
+                  {id: 2, datum:'10/10/2022, 18:52:23', comment:'@bruno.brunic kako da ne :P', user:'marko.markic', email:'marko.markic@gmail.com'}]
     },
     {
       id:3, naziv:'13. Kolo', odigrano:true, 
       utakmice_kola: [
-        {id:1, datum:'15.10.2022. 19:05', lokacija: 'Gradski stadion, Velika Gorica', odigrana:true, protivnik1:'Velika Gorica', protivnik2:'Hajduk', rezultat:'0 : 1'},
-        {id:2, datum:'16.10.2022. 17:10', lokacija: 'HNK Rijeka, Rijeka', odigrana:true, protivnik1:'Rijeka', protivnik2:'Lokomotiva', rezultat:'3 : 0'},
-        {id:3, datum:'14.10.2022. 18:00', lokacija: 'Šubićeva, Šibenik', odigrana:true, protivnik1:'Šibenik', protivnik2:'Slaven Belupo', rezultat:'0 : 2'},
-        {id:4, datum:'15.10.2022. 16:55', lokacija: 'Stadion gradski vrt, Osijek', odigrana:true, protivnik1:'Osijek', protivnik2:'Istra 1961', rezultat:'2 : 0'},
-        {id:5, datum:'16.10.2022. 15:00', lokacija: 'Stadion Maksimir, Zagreb', odigrana:true, protivnik1:'Dinamo', protivnik2:'Varaždin', rezultat:'3 : 1'}
+        {id:1, datum:'10/15/2022, 19:05', lokacija: 'Gradski stadion, Velika Gorica', odigrana:true, protivnik1:'Velika Gorica', protivnik2:'Hajduk', rezultat:'0 : 1'},
+        {id:2, datum:'10/16/2022, 17:10', lokacija: 'HNK Rijeka, Rijeka', odigrana:true, protivnik1:'Rijeka', protivnik2:'Lokomotiva', rezultat:'3 : 0'},
+        {id:3, datum:'10/14/2022, 18:00', lokacija: 'Šubićeva, Šibenik', odigrana:true, protivnik1:'Šibenik', protivnik2:'Slaven Belupo', rezultat:'0 : 2'},
+        {id:4, datum:'10/15/2022, 16:55', lokacija: 'Stadion gradski vrt, Osijek', odigrana:true, protivnik1:'Osijek', protivnik2:'Istra 1961', rezultat:'2 : 0'},
+        {id:5, datum:'10/16/2022, 15:00', lokacija: 'Stadion Maksimir, Zagreb', odigrana:true, protivnik1:'Dinamo', protivnik2:'Varaždin', rezultat:'3 : 1'}
       ],
       komentari: []
     },
     {
       id:4, naziv:'14. Kolo', odigrano:false, 
       utakmice_kola: [
-        {id:1, datum:'21.10.2022. 18:00', lokacija: 'Gradski stadion Poljud, Split', odigrana:false, protivnik1:'Hajduk', protivnik2:'Dinamo', rezultat:'- : -'},
-        {id:2, datum:'22.10.2022. 17:10', lokacija: 'Stadion Varteks, Varaždin', odigrana:false, protivnik1:'Varaždin', protivnik2:'Osijek', rezultat:'- : -'},
-        {id:3, datum:'23.10.2022. 15:00', lokacija: 'Aldo Drosina, Pula', odigrana:false, protivnik1:'Istra 1961', protivnik2:'Šibenik', rezultat:'- : -'},
-        {id:4, datum:'23.10.2022. 17:10', lokacija: 'Gradski stadion Ivan Kušek Apaš, Koprivnica', odigrana:false, protivnik1:'Slaven Belupo', protivnik2:'Rijeka', rezultat:'- : -'},
-        {id:5, datum:'22.10.2022. 15:00', lokacija: 'Nogometni stadion Zagreb, Zagreb', odigrana:false, protivnik1:'Lokomotiva', protivnik2:'Velika Gorica', rezultat:'- : -'}
+        {id:1, datum:'10/21/2022, 18:00', lokacija: 'Gradski stadion Poljud, Split', odigrana:false, protivnik1:'Hajduk', protivnik2:'Dinamo', rezultat:'- : -'},
+        {id:2, datum:'10/22/2022, 17:10', lokacija: 'Stadion Varteks, Varaždin', odigrana:false, protivnik1:'Varaždin', protivnik2:'Osijek', rezultat:'- : -'},
+        {id:3, datum:'10/23/2022, 15:00', lokacija: 'Aldo Drosina, Pula', odigrana:false, protivnik1:'Istra 1961', protivnik2:'Šibenik', rezultat:'- : -'},
+        {id:4, datum:'10/23/2022, 17:10', lokacija: 'Gradski stadion Ivan Kušek Apaš, Koprivnica', odigrana:false, protivnik1:'Slaven Belupo', protivnik2:'Rijeka', rezultat:'- : -'},
+        {id:5, datum:'10/22/2022, 15:00', lokacija: 'Nogometni stadion Zagreb, Zagreb', odigrana:false, protivnik1:'Lokomotiva', protivnik2:'Velika Gorica', rezultat:'- : -'}
       ],
       komentari: []
     }
