@@ -70,18 +70,18 @@ export class AuthInitializerComponent implements OnInit {
         {id:5, datum:'09/30/2022, 18:00', lokacija: 'Stadion Varteks, Varaždin', odigrana:true, protivnik1:'Varaždin', protivnik2:'Istra 1961', rezultat:'1 : 1'}
       ],
       komentari: [{id: 1, datum:'10/03/2022, 17:52:23', comment:'Kritična igra', user:'marko.markic', email:'marko.markic@gmail.com'},
-                  {id: 2, datum:'10/032022, 17:52:23', comment:'Lijepe riječi molim! :)', user:'admin', email:'admin@net.hr'}]
+                  {id: 2, datum:'10/03/2022, 17:52:23', comment:'Lijepe riječi molim! :)', user:'admin', email:'admin@net.hr'}]
     },
     {
       id:2, naziv:'12. Kolo', odigrano:true, 
       utakmice_kola: [
         {id:1, datum:'10/08/2022, 19:05', lokacija: 'Gradski stadion Poljud, Split', odigrana:true, protivnik1:'Hajduk', protivnik2:'Varaždin', rezultat:'2 : 1'},
         {id:2, datum:'10/08/2022, 17:10', lokacija: 'Aldo Drosina, Pula', odigrana:false, protivnik1:'Istra 1961', protivnik2:'Dinamo', rezultat:'- : -'},
-        {id:3, datum:'10/09/.2022, 15:00', lokacija: 'Gradski stadion Ivan Kušek Apaš, Koprivnica', odigrana:true, protivnik1:'Slaven Belupo', protivnik2:'Osijek', rezultat:'0 : 4'},
+        {id:3, datum:'10/09/2022, 15:00', lokacija: 'Gradski stadion Ivan Kušek Apaš, Koprivnica', odigrana:true, protivnik1:'Slaven Belupo', protivnik2:'Osijek', rezultat:'0 : 4'},
         {id:4, datum:'10/07/2022, 18:00', lokacija: 'Nogometni stadion Zagreb, Zagreb', odigrana:true, protivnik1:'Lokomotiva', protivnik2:'Šibenik', rezultat:'1 : 1'},
-        {id:5, datum:'10/09/.2022, 17:10', lokacija: 'Gradski stadion, Velika Gorica', odigrana:true, protivnik1:'Velika Gorica', protivnik2:'Rijeka', rezultat:'0 : 2'}
+        {id:5, datum:'10/09/2022, 17:10', lokacija: 'Gradski stadion, Velika Gorica', odigrana:true, protivnik1:'Velika Gorica', protivnik2:'Rijeka', rezultat:'0 : 2'}
       ],
-      komentari: [{id: 1, datum:'10/09/.2022, 14:12:23', comment:'Trofej ide u Rijeku D:', user:'bruno.brunic', email:'bruno.brunic@gmail.com'},
+      komentari: [{id: 1, datum:'10/09/2022, 14:12:23', comment:'Trofej ide u Rijeku D:', user:'bruno.brunic', email:'bruno.brunic@gmail.com'},
                   {id: 2, datum:'10/10/2022, 18:52:23', comment:'@bruno.brunic kako da ne :P', user:'marko.markic', email:'marko.markic@gmail.com'}]
     },
     {
