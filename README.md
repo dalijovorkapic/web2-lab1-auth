@@ -1,27 +1,23 @@
 # Lab1Auth
+Projekt je napravljen kroz Angular Typescript framework
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+Za projekt je korišten auth0 Angular SDK
 
-## Development server
+Za autorizaciju je u auth0 dodano pravilo koje za uspješan login šalje User Role kroz JWT token:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+exports.onExecutePostLogin = async (event, api) => {
+  const namespace = 'URL';
+  if (event.authorization) {
+    api.idToken.setCustomClaim(`${namespace}/roles`, event.authorization.roles);
+    api.accessToken.setCustomClaim(`${namespace}/roles`, event.authorization.roles);
+  }
+}
 
-## Code scaffolding
+Glavni kod aplikacije se nalazi u src/app/auth-initializer
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Postavljanje auth0 varijabli se nalazi u src/app/app.module.ts
 
-## Build
+Varijable okruženja se nalaze u src/environments
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
