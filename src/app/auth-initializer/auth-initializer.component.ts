@@ -96,13 +96,8 @@ export class AuthInitializerComponent implements OnInit {
       if(authenticated) {
         this.auth.user$.subscribe(user => {
           if(user){
-            console.log(user)
-            if(user!.nickname)
-              console.log(user!.nickname)
-              this.username = user!.nickname!
-            if(user!.email)
-              console.log(user!.email)
-              this.email = user!.name!
+            this.username = user.nickname || ""
+            this.email = user.name || ""
           }
         })
       }
@@ -131,8 +126,8 @@ export class AuthInitializerComponent implements OnInit {
     this.kola.forEach(kolo => {
       kolo.utakmice_kola.forEach(utakmica => {
         let rez_arr = utakmica.rezultat.split(" : ")
-        let rez1 = rez_arr[0]
-        let rez2 = rez_arr[1]
+        let rez1 = rez_arr[0] || 0
+        let rez2 = rez_arr[1] || 0
 
         if (rez1 != "-" && rez2 != "-"){
           this.tablica_poretka.forEach(klub => {
